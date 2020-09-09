@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block body %}
+        <div class="row">
+    <div class="col-6" style="height: 20%">
+        <h3 style="text-align: center">Memoria</h3>
+        {% autoescape off %}
+            {{ plot_div }}
+        {% endautoescape %}
+
+    </div>
+    <div class="col-6" style="height: 20%">
+        <h3 style="text-align: center">Bytes/Sec</h3>
+
+        {% autoescape off %}
+            {{ plot_div_net }}
+        {% endautoescape %}
+
+    </div>
+
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div  class="col-6" style="height: 20%">
+        <h3 style="text-align: center">CPU</h3>
+            {% autoescape off %}
+                {{ plot_div_cpu }}
+            {% endautoescape %}
+    </div>
+    <div  class="col-6" style="height: 20%">
+        <h3 style="text-align: center">Bytes Download</h3>
+            {% autoescape off %}
+                {{  plot_div_net_used }}
+            {% endautoescape %}
+    </div>
+    </div>
+{% endblock %}
+{%  block scripts %}
+       <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $("#id_tiempo").change(function(){
+                $("#id_rango").val("")
+                 if($("#id_empresa").val()){
+                     $("#form-tiempo").submit()
+                 }
+
+
+            });
+            $("#id_rango").change(function(){
+                if($("#id_empresa").val()){
+                    $("#form-tiempo").submit()
+                }
+
+            });
+             $("#id_empresa").change(function(){
+                  if($("#id_empresa").val()){
+                      $("#form-tiempo").submit()
+                  }
+
+            });
+
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n widget_tweaks %}
+{% block body %}
+    <div class="m-4">
+        <form class="form-inline my-3 my-lg-0" id="form-empresa" method="post">{% csrf_token %}
+         <label class="control-label control-label-required m-2">{{ form_empresa.empresa.label }}</label>
+            {% render_field form_empresa.empresa class="form-control col-1" data-rule-required="true" %} {{ form_empresa.empresa.errors }}
+           <a class="btn btn-primary m-4" href="admin/graficas/empresa/add/" target="_blank" role="button">Crear Empresa</a>
+        </form>
+    </div>
+    <iframe width=100% src="{{ url }}" height=100% border="0" frameborder="0"></iframe>
+
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+    jQuery(document).ready(function() {
+       $("#id_empresa").change(function () {
+           if($("#id_empresa").val()){
+               $("#form-empresa").submit()
+           }
+       });
+      });
+    </script>
+{% endblock %}
